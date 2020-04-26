@@ -16,7 +16,7 @@ city_list = ['chicago', 'new york city', 'washington']
 month_list = ['january', 'february', 'march', 'april', 'may', 'june', 'all']
 day_list = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'all']
 
-
+# first, get user's input
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
@@ -55,7 +55,7 @@ def get_filters():
     print('-'*40)
     return city, month, day
 
-
+# second load raw data
 def load_data(city, month, day):
     """
     Loads data for the specified city and filters by month and day if applicable.

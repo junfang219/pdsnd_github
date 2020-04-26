@@ -16,7 +16,7 @@ city_list = ['chicago', 'new york city', 'washington']
 month_list = ['january', 'february', 'march', 'april', 'may', 'june', 'all']
 day_list = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'all']
 
-
+# first, get user's input
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
@@ -54,13 +54,8 @@ def get_filters():
 
     print('-'*40)
     return city, month, day
-    print(city, month, day)
-get_filters()
 
-
-# In[52]:
-
-
+# second load raw data
 def load_data(city, month, day):
     """
     Loads data for the specified city and filters by month and day if applicable.
@@ -104,16 +99,6 @@ def load_data(city, month, day):
     print(df)
 
 
-# In[181]:
-
-
-df = load_data('washington', 'january', 'monday')
-print(df)
-
-
-# In[171]:
-
-
 def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
 
@@ -138,15 +123,6 @@ def time_stats(df):
     print('-'*40)
 
 
-# In[172]:
-
-
-time_stats(df)
-
-
-# In[173]:
-
-
 def station_stats(df):
     """Displays statistics on the most popular stations and trip."""
 
@@ -167,15 +143,6 @@ def station_stats(df):
     print('-'*40)
 
 
-# In[174]:
-
-
-station_stats(df)
-
-
-# In[175]:
-
-
 def trip_duration_stats(df):
     """Displays statistics on the total and average trip duration."""
 
@@ -191,14 +158,6 @@ def trip_duration_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
-
-# In[176]:
-
-
-trip_duration_stats(df)
-
-
-# In[184]:
 
 
 def user_stats(df):
@@ -228,7 +187,6 @@ def user_stats(df):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-
 
 def main():
     while True:

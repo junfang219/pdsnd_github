@@ -26,7 +26,7 @@ def get_filters():
         (str) month - name of the month to filter by, or "all" to apply no month filter
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
-    
+
     print("Hello! Let\'s explore some US bikeshare data!")
     # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     while True:
@@ -35,7 +35,7 @@ def get_filters():
             print('Please enter the right city name')
         else:
             break
-   
+
     # TO DO: get user input for month (all, january, february, ... , june)
     while True:
         month = input('Which month would you like to filter the data? January, February, ... , June, or all.\n')
@@ -43,7 +43,7 @@ def get_filters():
             print('Please enter the correct month')
         else:
             break
-            
+
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
     while True:
         day = input('Which day\'s information to you want to get? Monday, Tuesday, ... Sunday, or all. \n')
@@ -123,12 +123,12 @@ def time_stats(df):
     # TO DO: display the most common month
     most_common_month = df['month'].mode()[0]
     print('The most common month is', most_common_month)
-    
+
 
     # TO DO: display the most common day of week
     most_common_week = df['day_of_week'].mode()[0]
     print('The most common week is', most_common_week)
-    
+
     # TO DO: display the most common start hour
     df['hour'] = df['Start Time'].dt.hour
     most_common_start_hour = df['hour'].mode()[0]
@@ -187,7 +187,7 @@ def trip_duration_stats(df):
 
     # TO DO: display mean travel time
     print('Mean travel time is', df['Trip Duration'].mean()/60, 'minutes')
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -224,20 +224,33 @@ def user_stats(df):
         print('The most common year of birth is', df['Birth Year'].value_counts().idxmax())
     else:
         print('Birth year information is not avaiable')
-    
+
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
 
-# In[185]:
+def main():
+    while True:
+        city, month, day = get_filters()
+        df = load_data(city, month, day)
+
+        time_stats(df)
+        station_stats(df)
+        trip_duration_stats(df)
+        user_stats(df)
+
+        while True:
+            rawData = input('\nWould you like to view individual trip? Enter yes or no,\n')
+            if rawData.lower() == 'yes':
+                print(df.iloc[sample(range(len(df)),5)])
+            else:
+                break
+
+        restart = input('\nWould you like to restart? Enter yes or no.\n')
+        if restart.lower() != 'yes':
+            break
 
 
-user_stats(df)
-
-
-# In[ ]:
-
-
-
-
+if __name__ == "__main__":
+	main()
